@@ -1,0 +1,22 @@
+section.comments {
+    margin-top: var(--padding-base-size);
+}
+section.comments h3 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+section.comments ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+section.comments li {
+    padding: 1rem;
+    background: var(--color-grayscale-200);
+    border-radius: calc(0.5*var(--radius-base-size));
+}
+section.comments li span {
+    display: block;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+}
