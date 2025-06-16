@@ -1,16 +1,17 @@
 #video-list-page h2 {
-    margin-bottom: var(--padding-base-size);
+    margin-bottom: calc(1.5*var(--padding-base-size));
 }
 .video-list {
+    max-width: 60rem;
     display: flex;
     flex-direction: column;
-    gap: var(--padding-base-size);
+    gap: calc(1.5*var(--padding-base-size));
 }
 .video-option {
     width: 100%;
-    padding: calc(0.75*var(--padding-base-size));
+    padding: var(--padding-base-size);
     background: var(--color-primary-200);
-    border-radius: calc(0.5*var(--radius-base-size) + 0.75*var(--padding-base-size));
+    border-radius: calc(0.5*var(--radius-base-size) + var(--padding-base-size));
     display: grid;
     grid-template-columns: min(240px, 40%) 1fr;
     gap: var(--padding-base-size);
@@ -48,11 +49,14 @@
 }
 .video-option h4 {
     display: block;
-    font-style: italic;
     text-overflow: ellipsis;
+    margin-top: 0.25rem;
     overflow: hidden;
     text-wrap: nowrap;
     white-space: nowrap;
+}
+.video-option h4 i {
+    font-style: italic;
 }
 .video-option p {
     font-size: 0.875rem;

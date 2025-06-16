@@ -1,0 +1,23 @@
+header {
+    position: sticky;
+    top: 0;
+    padding: var(--padding-base-size);
+    background: var(--color-primary-500);
+    box-shadow: 0 0 8px 4px var(--color-grayscale-200);
+}
+nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    justify-content: flex-end;
+}
+nav a > * {
+    line-height: 1.5rem;
+}
+nav a, nav a > * {
+    display: block;
+}
+.home-link {
+    margin-right: auto;
+}

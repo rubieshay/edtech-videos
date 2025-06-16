@@ -1,0 +1,63 @@
+/* BUTTONS */
+
+button, input[type="button"], input[type="submit"], .button-link {
+    display: block;
+    width: fit-content;
+    border-radius: var(--radius-base-size);
+    padding: 0.625rem 0.75rem;
+    line-height: 1.25;
+    background: var(--color-primary-700);
+    color: var(--color-grayscale-100);
+    cursor: pointer;
+}
+.button-disabled {
+    background: var(--color-grayscale-400);
+    color: var(--color-grayscale-500);
+    cursor: default;
+}
+.icon-text-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0.625rem 0.75rem 0.625rem 0.625rem;
+}
+.icon-text-button .material-symbols-outlined {
+    font-size: 1.25rem;
+}
+
+/* TEXT INPUTS */
+
+form.entry-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.form-input label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+.form-input label i {
+    font-style: italic;
+}
+input[type="text"], textarea {
+    display: block;
+    width: 100%;
+    line-height: 1.25;
+    padding: calc(0.5rem - 1.5px);
+    border: 1.5px solid var(--color-grayscale-900);
+    border-radius: var(--radius-base-size);
+    background: var(--color-grayscale-100);
+}
+textarea {
+    resize: none;
+    field-sizing: content;
+    max-height: 11rem;
+}
+form.entry-form input[type="text"], form.entry-form textarea {
+    max-width: 40rem;
+}
+form.entry-form textarea {
+    min-height: 6rem;
+}

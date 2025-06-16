@@ -1,22 +1,69 @@
 section.comments {
-    margin-top: var(--padding-base-size);
+    max-width: min(60rem, 80vh);
+    margin-top: calc(3*var(--padding-base-size));
+    margin-inline: auto;
+}
+.comments-header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--padding-base-size);
+    margin-bottom: var(--padding-base-size);
 }
 section.comments h3 {
     font-weight: 700;
-    margin-bottom: 1rem;
 }
+
+/* NO COMMENTS */
+section.comments .no-comments {
+    margin-top: calc(1.5*var(--padding-base-size));
+}
+section.comments .no-comments > div {
+    font-style: italic;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+section.comments .no-comments :first-child {
+    font-weight: 700;
+}
+
+/* EXISTING AND NEW COMMENTS */
 section.comments ul {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--padding-base-size);
 }
-section.comments li {
-    padding: 1rem;
-    background: var(--color-grayscale-200);
-    border-radius: calc(0.5*var(--radius-base-size));
+section.comments li, form.new-comment {
+    padding: var(--padding-base-size);
+    background: var(--color-grayscale-300);
+    border-radius: var(--radius-base-size);
 }
-section.comments li span {
+section.comments li span, form.new-comment span {
     display: block;
     font-style: italic;
     margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-wrap: nowrap;
+    white-space: nowrap;
+}
+section.comments li p {
+    font-size: 0.875rem;
+    line-height: 1.25;
+}
+
+/* NEW COMMENTS */
+form.new-comment {
+    margin-bottom: calc(1.5*var(--padding-base-size));
+}
+form.new-comment div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+form.new-comment textarea {
+    margin-bottom: 1rem;
 }
