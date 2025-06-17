@@ -1,41 +1,64 @@
-#video-list-page h2 {
-    margin-bottom: calc(1.5*var(--padding-base-size));
+/* SEARCH */
+#video-results-page search {
+    margin-bottom: calc(2*var(--padding-base-size));
 }
-.video-list {
+.empty-video-results {
+    font-weight: 700;
+}
+.empty-video-results i {
+    font-style: italic;
+    font-weight: inherit;
+}
+
+/* VIDEO TILES */
+.video-results h2 {
+    margin-bottom: var(--padding-base-size);
+}
+.video-results h2 i {
+    font-style: italic;
+    font-size: inherit;
+}
+.video-results ul {
     max-width: 60rem;
     display: flex;
     flex-direction: column;
-    gap: calc(1.5*var(--padding-base-size));
+    gap: var(--padding-base-size);
 }
-.video-option {
+.video-results ul li {
+    display: block;
+}
+.video-results ul li a {
     width: 100%;
     padding: var(--padding-base-size);
     background: var(--color-primary-200);
     border-radius: calc(0.5*var(--radius-base-size) + var(--padding-base-size));
     display: grid;
-    grid-template-columns: min(240px, 40%) 1fr;
+    grid-template-columns: min(240px, 40%) minmax(0, 1fr);
     gap: var(--padding-base-size);
     transition: scale 200ms ease-in-out;
 }
-.video-option::hover {
+.video-results ul li a::hover {
     scale: 1.1;
 }
-.video-option video.video-thumbnail {
-    display: block;
+.video-results video.video-thumbnail {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: calc(0.5*var(--radius-base-size));
 }
-.video-details {
+
+/* DESCRIPTION AND INFO */
+.video-results article {
+    display: block;
     width: 100%;
     min-width: 0;
 }
-.video-option h3, .video-option h4, .video-option p {
+.video-results article h3, .video-results article h4, .video-results article p {
     line-height: 1.25;
 }
-.video-option h3 {
+.video-results article h3 {
     display: block;
+    margin-bottom: 0.25rem;
     font-size: 1.25rem;
     font-weight: 700;
     display: -webkit-box;
@@ -47,20 +70,19 @@
     max-height: 2.5em;
     width: 100%;
 }
-.video-option h4 {
+.video-results article h4 {
     display: block;
+    margin-bottom: 0.5rem;
     text-overflow: ellipsis;
-    margin-top: 0.25rem;
     overflow: hidden;
     text-wrap: nowrap;
     white-space: nowrap;
 }
-.video-option h4 i {
+.video-results article h4 i {
     font-style: italic;
 }
-.video-option p {
+.video-results article p {
     font-size: 0.875rem;
-    margin-top: 0.5rem;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     line-clamp: 2;

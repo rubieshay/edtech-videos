@@ -1,4 +1,4 @@
-import testData from "../../utils/test_data.json";
+import testData from "../../../utils/test_data.json";
 
 export default function VideoViewer({ videoID } : {videoID: string}) {
     // VideoViewer will contain the title, description, and video player
@@ -9,13 +9,14 @@ export default function VideoViewer({ videoID } : {videoID: string}) {
     if (videoData) {
         return (
             <section className="video-viewer">
-                <h2 id="video-label">{videoData.title}</h2>
-                <video className="video-player" src={"/sample_video_files/" + videoData.video_url}         
-                    aria-labelledby="video-label" controls>
+                <h2 id="video-label" title={videoData.title}>{videoData.title}</h2>
+                <video className="video-player" aria-labelledby="video-label" controls>
+                    <source src={"/sample_video_files/" + videoData.video_url}></source>
+                    <source src={"/video_not_found.mp4#t=1"}></source>
                     An error occurred with the video player.
                 </video>
                 <div className="description">
-                    <h4>Created by <i>{videoData.user_id}</i></h4>
+                    <h4 title={"Created by " + videoData.user_id}>Created by <i>{videoData.user_id}</i></h4>
                     <p>{videoData.description}</p>
                 </div>
             </section>

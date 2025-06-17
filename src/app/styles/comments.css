@@ -1,6 +1,5 @@
 section.comments {
     max-width: min(60rem, 80vh);
-    margin-top: calc(3*var(--padding-base-size));
     margin-inline: auto;
 }
 .comments-header {

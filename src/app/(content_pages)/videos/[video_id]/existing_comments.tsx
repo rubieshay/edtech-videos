@@ -1,6 +1,6 @@
 "use client";
 
-import testData from "../../utils/test_data.json";
+import testData from "../../../utils/test_data.json";
 
 export default function ExistingComments({ videoID } : {videoID: string}) {
     // Existing comments contains comments for the videoID that have already been written

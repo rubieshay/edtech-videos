@@ -85,6 +85,9 @@
     --color-grayscale-300: #dbd9d6;
     --color-grayscale-400: #b1b0ad;
     --color-grayscale-500: #898887;
+    --color-grayscale-600: #6a6968;
+    --color-grayscale-700: #555453;
+    --color-grayscale-800: #313030;
     --color-grayscale-900: #201f1f;
     --color-selection: #3f69ff;
 
@@ -100,10 +103,12 @@
                              "opsz" 24;
     display: block;
     aspect-ratio: 1;
+    height: 1em;
 }
 
 body {
     font-family: "DM Sans", sans-serif;
+    font-weight: 400;
     background: var(--color-grayscale-200);
     color: var(--color-grayscale-900);
 }
@@ -112,8 +117,10 @@ main {
 }
 h1, h2 {
     font-size: 1.5rem;
-    font-weight: 700;
     line-height: 1.25;
+}
+h1 {
+    font-weight: 700;
 }
 
 *:focus-visible {

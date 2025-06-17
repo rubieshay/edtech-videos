@@ -20,6 +20,13 @@
             "description": "This is a sample description for the third sample video.",
             "video_url": "sample_video_3.mp4",
             "title": "Lesson Three: Sample Lesson Title Three"
+        },
+        {
+            "video_id": "4",
+            "user_id": "frank_davis",
+            "description": "This is a sample description for the video from someone else who's link doesn't exist.",
+            "video_url": "sample_video_4.mp4",
+            "title": "Lesson Four: Links that aren't included in the sample"
         }
     ],
     "comments": [

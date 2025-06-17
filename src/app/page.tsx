@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Home() {
+export default function Login() {
     // This will be the splash page/login page, currently it is a placeholder to take you to videos
     return (
         <main>

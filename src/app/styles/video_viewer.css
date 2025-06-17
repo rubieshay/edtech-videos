@@ -3,6 +3,7 @@ section.video-viewer {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--padding-base-size);
+    margin-bottom: calc(3*var(--padding-base-size));
     max-width: min(60rem, 80vh);
     margin-inline: auto;
 }
@@ -34,6 +35,8 @@ section.video-viewer h2 {
     width: 100%;
 }
 section.video-viewer .description h4 {
+    display: block;
+    margin-bottom: 0.5rem;
     text-overflow: ellipsis;
     overflow: hidden;
     text-wrap: nowrap;
@@ -44,5 +47,4 @@ section.video-viewer .description h4 i {
 }
 section.video-viewer .description p {
     font-size: 0.875rem;
-    margin-top: 0.5rem;
 }
