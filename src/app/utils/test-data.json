@@ -1,0 +1,59 @@
+{
+    "videos": [
+        {
+            "video_id": "1",
+            "user_id": "rubie_shay",
+            "description": "This is a sample description for the first sample video.",
+            "video_url": "/sample-video-files/sample-video-1.mp4",
+            "title": "Lesson One: Sample Lesson Title One"
+        },
+        {
+            "video_id": "2",
+            "user_id": "rubie_shay",
+            "description": "This is a sample description for the second sample video.",
+            "video_url": "/sample-video-files/sample-video-2.mp4",
+            "title": "Lesson Two: Sample Lesson Title Two"
+        },
+        {
+            "video_id": "3",
+            "user_id": "rubie_shay",
+            "description": "This is a sample description for the third sample video.",
+            "video_url": "/sample-video-files/sample-video-3-narrow.mp4",
+            "title": "Lesson Three: Sample Lesson Title Three"
+        },
+        {
+            "video_id": "4",
+            "user_id": "frank_davis",
+            "description": "This is a sample description for the video from someone else who's link doesn't exist.",
+            "video_url": "/sample-video-files/sample-video-4.mp4",
+            "title": "Lesson Four: Links that aren't included in the sample"
+        }
+    ],
+    "comments": [
+        {
+            "user_id": "alice_smith",
+            "content": "This is such a great video!",
+            "video_id": "1"
+        },
+        {
+            "user_id": "bob_johnson",
+            "content": "This was very helpful in informing me about this topic!",
+            "video_id": "1"
+        },
+        {
+            "user_id": "charlie_williams",
+            "content": "This video has really gotten me thinking about this subject on a deeper level.",
+            "video_id": "2"
+        },
+        {
+            "user_id": "david_miller",
+            "content": "I can't wait for the next video in this series!",
+            "video_id": "2"
+        },
+        {
+            "user_id": "ellie_jones",
+            "content": "I really needed this to help me study for my test.",
+            "video_id": "2"
+        }
+    ]
+}

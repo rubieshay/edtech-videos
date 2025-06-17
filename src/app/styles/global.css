@@ -50,24 +50,33 @@
     list-style: none;
 
     background: none;
-    border: none;
-    outline: none;
     color: inherit;
     border-radius: 0;
+
+    border: none;
+    border-style: none;
+    border-width: 0;
+    border-color: transparent;
+
+    outline: none;
+    outline-style: none;
+    outline-width: 0;
+    outline-color: transparent;
+    outline-offset: 0;
 }
 
 @font-face {
     font-family: "DM Sans";
-    src: url("../fonts/dm_sans.ttf");
+    src: url("../fonts/dm-sans.ttf");
 }
 @font-face {
     font-family: "DM Sans Italic";
-    src: url("../fonts/dm_sans_italic.ttf");
+    src: url("../fonts/dm-sans-italic.ttf");
     font-style: italic;
 }
 @font-face {
     font-family: "Material-Symbols-Outlined";
-    src: url("../fonts/material_symbols_outlined.ttf");
+    src: url("../fonts/material-symbols-outlined.ttf");
 }
 
 :root {
@@ -125,4 +134,5 @@ h1 {
 
 *:focus-visible {
     outline: 3px solid var(--color-selection);
+    outline-offset: 1px;
 }

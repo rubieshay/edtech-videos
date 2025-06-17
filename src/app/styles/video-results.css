@@ -1,0 +1,96 @@
+/* SEARCH */
+#video-results-page search {
+    margin-bottom: calc(2*var(--padding-base-size));
+}
+.empty-video-results {
+    font-weight: 700;
+}
+.empty-video-results i {
+    font-style: italic;
+    font-weight: inherit;
+}
+
+/* VIDEO TILES */
+.video-results h2 {
+    margin-bottom: var(--padding-base-size);
+}
+.video-results h2 i {
+    font-style: italic;
+    font-size: inherit;
+}
+.video-results ul {
+    max-width: 60rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-base-size);
+}
+.video-results ul li {
+    display: block;
+}
+.video-results ul li a {
+    width: 100%;
+    height: calc(7.3125rem + 2*var(--padding-base-size));
+    padding: var(--padding-base-size);
+    background: var(--color-primary-100);
+    border-radius: calc(0.5*var(--radius-base-size) + var(--padding-base-size));
+    display: grid;
+    grid-template-columns: min(240px, 40%, calc(16*7.3125rem/9)) minmax(0, 1fr);
+    gap: var(--padding-base-size);
+    transition: scale 200ms ease-in-out;
+}
+.video-results ul li a::hover {
+    scale: 1.1;
+}
+.video-results video.video-thumbnail {
+    /* width: 100%; */
+    height: 7.3125rem;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    background-color: #000000;
+    border-radius: calc(0.5*var(--radius-base-size));
+}
+
+/* DESCRIPTION AND INFO */
+.video-results article {
+    display: block;
+    width: 100%;
+    min-width: 0;
+}
+.video-results article h3, .video-results article h4, .video-results article p {
+    line-height: 1.25;
+}
+.video-results article h3 {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    overflow: clip;
+    word-wrap: break-word;
+    max-height: 2.5em;
+    width: 100%;
+}
+.video-results article h4 {
+    display: block;
+    margin-bottom: 0.5rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-wrap: nowrap;
+    white-space: nowrap;
+}
+.video-results article h4 i {
+    font-style: italic;
+}
+.video-results article p {
+    font-size: 0.875rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    overflow: clip;
+    word-wrap: break-word;
+    max-height: 2.5em;
+}
