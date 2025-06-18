@@ -1,0 +1,222 @@
+.video-player {
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+}
+.video-player video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    background: #000000;
+    display: block;
+    border-radius: var(--radius-base-size);
+}
+.video-fullscreen {
+    width: 100%;
+    height: 100%;
+    border-radius: none;
+}
+.video-paused::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #00000055;
+    border-radius: var(--radius-base-size);
+    top: 0;
+    left: 0;
+    z-index: 3;
+    pointer-events: none;
+    cursor: pointer;
+}
+.video-paused::after {
+    content: "play_arrow";
+    color: var(--color-grayscale-100);
+    text-shadow: 0 0 5px 5px #000000ff;
+    font-family: "Material Symbols Outlined", "DM Sans", sans-serif;
+    font-variation-settings: "FILL" 1,
+                             "wght" 300,
+                             "GRAD" 0,
+                             "opsz" 24;
+    display: block;
+    font-size: 6rem;
+    aspect-ratio: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-user-select: none;
+    user-select: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    pointer-events: none;
+    cursor: pointer;
+}
+.video-controls {
+    opacity: 0;
+    transition: opacity 200ms 200ms ease-in-out;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    padding-top: 1rem;
+    background: linear-gradient(#00000000, #000000cc 70%);
+    border-radius: 0 0 var(--radius-base-size) var(--radius-base-size);
+    z-index: 10;
+}
+.video-player:hover .video-controls-visible, .video-player:has(* *:hover) .video-controls, .video-player:focus-within {
+    opacity: 1;
+    transition: opacity 200ms 0ms ease-in-out;
+}
+.video-control-set {
+    display: flex;
+    flex-direction: row;
+    /* gap: 0.5rem; */
+    grid-area: 1 / 1 / 2 / 2;
+}
+.video-controls-left {
+    justify-content: flex-start;
+}
+.video-controls-right {
+    justify-content: flex-end;
+}
+.video-control-set > li {
+    display: block;
+    border-radius: var(--radius-base-size);
+}
+.video-control-set > li > button {
+    background: none;
+    position: relative;
+}
+.video-control-set > li > button:focus-visible {
+    outline-offset: calc(-2.5px - 0.25rem);
+}
+.video-control-set > li > button::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: var(--radius-base-size);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+}
+.video-control-set > li:hover > button::before {
+    background: #00000088;
+}
+.video-control-set > li > button:focus-visible::before {
+    background: #000000;
+}
+.video-control-set > li.video-slider-control:hover > button::before {
+    background: #00000000;
+}
+.video-control-set > li:hover > button::before, .video-control-set > li > button:focus-visible::before {
+    opacity: 1;
+}
+.video-controls .video-time-display {
+    margin-block: auto;
+    color: var(--color-grayscale-100);
+    font-size: 0.875rem;
+}
+@media (max-width: 280px) {
+    .video-controls .video-time-display {
+        visibility: hidden;
+    }
+}
+.video-controls button.material-symbols-filled, .video-controls .video-slider-control > div.material-symbols-filled {
+    color: var(--color-grayscale-100);
+    padding: 0.625rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    height: auto;
+    font-variation-settings: "FILL" 1,
+                             "wght" 300,
+                             "GRAD" 0,
+                             "opsz" 24;
+}
+.video-controls button.material-symbols-filled {
+    width: 2.5rem;
+    height: auto;
+}
+
+/* SLIDER CONTROLS */
+.video-slider-control .range-input {
+    --slider-thumb-color: var(--color-grayscale-100);
+    --slider-base-color: var(--color-grayscale-500);
+    --slider-fill-color: var(--color-grayscale-300);
+}
+.video-slider-control .range-number {
+    color: var(--color-grayscale-100);
+}
+
+.video-controls .video-slider-control {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 5;
+    transition: padding-left 400ms 200ms ease-in-out;
+}
+.video-controls .video-slider-control:hover, .video-controls .video-slider-control:has(.range-element input[type=range]:focus-visible) {
+    padding-left: 0.625rem;
+    transition: padding-left 200ms 0ms ease-in-out;
+}
+.video-slider-control .range-element {
+    opacity: 0;
+    gap: 0;
+    transition: opacity 400ms 200ms ease-in-out, gap 100ms 500ms linear;
+}
+.video-slider-control:hover .range-element, .video-slider-control .range-element:has(.range-input input[type=range]:focus-visible) {
+    opacity: 1;
+    gap: 0.25rem;
+    transition: opacity 200ms 0ms ease-in-out, gap 50ms 0ms linear;
+}
+.video-slider-control input[type=range] {
+    width: 0;
+    transition: width 300ms 200ms ease-in;
+}
+.video-slider-control:hover input[type=range], .video-slider-control input[type=range]:focus-visible {
+    width: 6rem;
+    transition: width 150ms 50ms ease-out;
+}
+.video-slider-control .range-number {
+    width: 0;
+    transition: width 100ms 500ms ease-out;
+}
+.video-slider-control:hover .range-number, .video-slider-control .range-element:has(.range-input input[type=range]:focus-visible) .range-number {
+    width: var(--range-number-width);
+    transition: width 50ms 0ms ease-in;
+}
+.video-slider-control::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    border-radius: 0.5rem;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 400ms 200ms ease-in-out;
+}
+.video-slider-control:hover::after {
+    background: #00000088;
+}
+.video-slider-control:has(input[type=range]:focus-visible)::after {
+    background: #000000;
+}
+.video-slider-control:has(input[type=range]:focus-visible)::after, .video-slider-control:hover::after {
+    opacity: 1;
+    transition: opacity 200ms 0ms ease-in-out;
+}

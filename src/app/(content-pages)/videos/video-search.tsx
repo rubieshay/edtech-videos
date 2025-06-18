@@ -17,10 +17,10 @@ export default function VideosSearch({ setSearchedUserID }: {setSearchedUserID: 
     return (
         <search>
             <form onSubmit={(event) => handleSearch(event)}>
-                <label htmlFor="user-search">Find Videos by User</label>
+                <label htmlFor="user-search">Find Lessons by Username</label>
                 <div>
                     <input id="user-search" type="text" placeholder="Search..." aria-required="true" autoComplete="off" value={searchboxValue} onChange={(event) => setSearchboxValue(event.target.value)}/>
-                    <button className={"search-button material-symbols-outlined" + (searchboxValue === "" ? " button-disabled" : "")}>search</button>
+                    <button className={"search-button material-symbols material-symbols-outlined" + (searchboxValue === "" ? " button-disabled" : "")}>search</button>
                 </div>
             </form>
         </search>

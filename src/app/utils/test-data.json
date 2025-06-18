@@ -27,6 +27,13 @@
             "description": "This is a sample description for the video from someone else who's link doesn't exist.",
             "video_url": "/sample-video-files/sample-video-4.mp4",
             "title": "Lesson Four: Links that aren't included in the sample"
+        },
+        {
+            "video_id": "5",
+            "user_id": "rubie_shay",
+            "description": "",
+            "video_url": "",
+            "title": ""
         }
     ],
     "comments": [

@@ -17,6 +17,9 @@ export default function ContentStudioLayout({ children }: Readonly<{children: Re
                     <Link href="/content-studio" className="nav-link nav-link-active">
                         <span>Content Studio</span>
                     </Link>
+                    <Link href="/" className="logout-button">
+                        <span>Logout</span>
+                    </Link>
                 </nav>
             </header>
             {children}

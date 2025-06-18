@@ -4,7 +4,9 @@ import testData from "../../utils/test-data.json";
 export default function VideoResults({ searchedUserID }: {searchedUserID: string}) {
     // VideoResults contains the resulting list of videos based on the searched user
 
-    const userVideos = testData.videos.filter((video) => video.user_id === searchedUserID);
+    // Filter the list to not include "deleted" videos
+    // Since there isn't a delete api call, we can edit the video to a blank video and filter based on this
+    const userVideos = testData.videos.filter((video) => video.user_id === searchedUserID && video.video_url !== "" && video.title !== "");
 
     if (userVideos && userVideos.length > 0) {
         return (
@@ -15,8 +17,8 @@ export default function VideoResults({ searchedUserID }: {searchedUserID: string
                         <li key={videoData.video_id}>
                             <Link href={`/videos/${encodeURIComponent(videoData.video_id)}`}>
                                 <video className="video-thumbnail">
-                                    <source src={videoData.video_url + "#t=1"}></source>
-                                    <source src={"/video-not-found.mp4#t=1"}></source>
+                                    <source src={videoData.video_url + "#t=0.5"}></source>
+                                    <source src={"/video-not-found.mp4#t=0.5"}></source>
                                     An error occurred with the video player.
                                 </video>
                                 <article>
@@ -32,7 +34,7 @@ export default function VideoResults({ searchedUserID }: {searchedUserID: string
         );
     } else if (userVideos) {
         return (
-            <div className="empty-video-results">No videos found by user <i>{"\u201c" + searchedUserID + "\u201d"}</i></div>
+            <div className="empty-video-results">No videos found by user <i>{"\u201c" + searchedUserID + "\u201d" + "."}</i></div>
         );
     }
 }

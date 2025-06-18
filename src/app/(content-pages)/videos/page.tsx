@@ -14,7 +14,7 @@ export default function VideosHome() {
             {(searchedUserID !== null && searchedUserID !== "") ?
                 <VideoList searchedUserID={searchedUserID}/>
                 :
-                <div className="empty-video-results">Search for a user to find videos</div>
+                <div className="empty-video-results">Search for a user to find lessons...</div>
             }
         </main>
     );

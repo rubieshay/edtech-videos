@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserDataContext } from "../../../utils/user-data-context";
 
 export default function NewComment({ setIsWritingComment }: {setIsWritingComment: React.Dispatch<React.SetStateAction<boolean>>}) {
     // NewComment is how you can add a new comment to a video
 
+    const {currentUserID} = useContext(UserDataContext);
     const [commentText, setCommentText] = useState<string>("");
 
     function handleCancelComment() {
@@ -22,11 +24,11 @@ export default function NewComment({ setIsWritingComment }: {setIsWritingComment
 
     return (
         <form className="new-comment">
-            <span>commenters_user_id_here</span>
+            <span>{currentUserID}</span>
             <textarea aria-label="comment text input" value={commentText} onChange={(event) => setCommentText(event.target.value)}></textarea>
-            <div>
-                <button onClick={() => handleCancelComment()}>Cancel</button>
-                <button className={(commentText !== "") ? "" : "button-disabled"} onClick={() => handlePostComment()}>Post</button>
+            <div className="form-end-buttons">
+                <input type="button" value="Cancel" onClick={() => handleCancelComment()}/>
+                <input type="submit" value="Post" className={commentText !== "" ? "" : "button-disabled"} onClick={() => handlePostComment()}/>
             </div>
         </form>
     );

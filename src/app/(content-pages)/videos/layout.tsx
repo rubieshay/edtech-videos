@@ -17,6 +17,9 @@ export default function VideosLayout({ children }: Readonly<{children: React.Rea
                     <Link href="/content-studio" className="nav-link">
                         <span>Content Studio</span>
                     </Link>
+                    <Link href="/" className="logout-button">
+                        <span>Logout</span>
+                    </Link>
                 </nav>
             </header>
             {children}

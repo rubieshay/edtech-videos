@@ -15,7 +15,7 @@ export default function Comments({ videoID } : {videoID: string}) {
                 <h3>Comments</h3>
                 {!isWritingComment ?
                     <button className="icon-text-button" onClick={() => setIsWritingComment(true)}>
-                        <span className="material-symbols-outlined" aria-hidden="true">add</span>
+                        <span className="material-symbols material-symbols-outlined" aria-hidden="true">add</span>
                         <span>Add Comment</span>
                     </button>
                     :

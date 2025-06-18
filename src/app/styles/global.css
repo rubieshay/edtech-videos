@@ -46,7 +46,9 @@
     text-decoration: none;
     text-transform: none;
     text-align: left;
+    text-shadow: none;
     font-family: inherit;
+    font-synthesis: none;
     list-style: none;
 
     background: none;
@@ -66,8 +68,9 @@
 }
 
 @font-face {
-    font-family: "DM Sans";
+    font-family: DM Sans;
     src: url("../fonts/dm-sans.ttf");
+    font-style: normal;
 }
 @font-face {
     font-family: "DM Sans Italic";
@@ -75,22 +78,29 @@
     font-style: italic;
 }
 @font-face {
-    font-family: "Material-Symbols-Outlined";
+    font-family: "Material Symbols Outlined";
     src: url("../fonts/material-symbols-outlined.ttf");
+    font-style: normal;
+}
+@font-face {
+    font-family: "Material Symbols Filled";
+    src: url("../fonts/material-symbols-outlined-filled.ttf");
+    font-style: normal;
 }
 
 :root {
-    --color-primary-100: #efdebb;
-    --color-primary-200: #f0d9a7;
-    --color-primary-300: #f7cd79;
-    --color-primary-400: #f7c561;
+    --color-primary-100: #f8e5bd;
+    --color-primary-200: #fbe1a7;
+    --color-primary-300: #fad284;
+    --color-primary-400: #fdcd6c;
     --color-primary-500: #ffbf3f;
     --color-primary-600: #e9a10f;
     --color-primary-700: #be7d05;
     --color-primary-800: #9d5f01;
     --color-primary-900: #764803;
+
     --color-grayscale-100: #ffffff;
-    --color-grayscale-200: #f5f2ed;
+    --color-grayscale-200: #f7f4f1;
     --color-grayscale-300: #dbd9d6;
     --color-grayscale-400: #b1b0ad;
     --color-grayscale-500: #898887;
@@ -98,21 +108,31 @@
     --color-grayscale-700: #555453;
     --color-grayscale-800: #313030;
     --color-grayscale-900: #201f1f;
+
+    --color-warning: #c62a34;
     --color-selection: #3f69ff;
 
     --padding-base-size: clamp(0.75rem, 3vw, 1rem);
     --radius-base-size: clamp(0.375rem, 1.5vw, 0.5rem);
 }
 
-.material-symbols-outlined {
-    font-family: "Material Symbols Outlined";
-    font-variation-settings: "FILL" 0,
-                             "wght" 300,
-                             "GRAD" 0,
-                             "opsz" 24;
+.material-symbols {
     display: block;
     aspect-ratio: 1;
     height: 1em;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.material-symbols-filled {
+    font-family: "Material Symbols Filled", "DM Sans", sans-serif;
+}
+.material-symbols-outlined {
+    font-family: "Material Symbols Outlined", "DM Sans", sans-serif;
 }
 
 body {
@@ -120,6 +140,7 @@ body {
     font-weight: 400;
     background: var(--color-grayscale-200);
     color: var(--color-grayscale-900);
+    position: relative;
 }
 main {
     padding: calc(2*var(--padding-base-size)) var(--padding-base-size);
@@ -133,6 +154,6 @@ h1 {
 }
 
 *:focus-visible {
-    outline: 3px solid var(--color-selection);
+    outline: 2.5px solid var(--color-selection);
     outline-offset: 1px;
 }
