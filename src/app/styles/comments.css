@@ -65,4 +65,14 @@ form.new-comment div {
 }
 form.new-comment textarea {
     margin-bottom: 1rem;
+    /* 3 lines */
+    height: 4.75rem;
+}
+@supports (field-sizing: content) {
+    form.new-comment textarea {
+        /* 1 to 4 lines */
+        height: auto;
+        max-height: 6rem;
+        min-height: 2.25rem;
+    }   
 }

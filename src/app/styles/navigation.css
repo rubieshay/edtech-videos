@@ -4,6 +4,7 @@ header {
     padding: calc(0.5*var(--padding-base-size)) var(--padding-base-size);
     background: var(--color-primary-500);
     box-shadow: 0 0 8px 4px var(--color-grayscale-200);
+    z-index: 900;
 }
 nav {
     display: flex;

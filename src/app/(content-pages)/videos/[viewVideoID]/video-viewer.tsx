@@ -1,10 +1,31 @@
-import testData from "../../../utils/test-data.json";
+"use client";
+
+import { useCallback, useEffect, useState } from "react";
+import { fetchVideoSingle } from "../../../utils/api-calls";
 import VideoPlayer from "./video-player";
+import { VideoData } from "@/app/utils/types";
 
 export default function VideoViewer({ videoID } : {videoID: string}) {
     // VideoViewer will contain the title, description, and video player
 
-    const videoData = testData.videos.find((video) => video.video_id === videoID);
+    const [videoData, setVideoData] = useState<VideoData | null>(null);
+        
+    // fetch video from the api
+    const getVideo = useCallback(async () => {
+        const videoResponse = await fetchVideoSingle(videoID);
+        if (!videoResponse.success) {
+            setVideoData(null);
+            return;
+        }
+        // get the needed data from the response
+        const video = videoResponse.responseValue.video
+        const editVideo = {video_id: video.id, user_id: video.user_id, video_url: video.video_url, title: video.title, description: video.description};
+        setVideoData(editVideo);
+    }, [videoID]);
+
+    useEffect(() => {
+        getVideo();
+    }, [getVideo]);
 
     if (videoData) {
         return (

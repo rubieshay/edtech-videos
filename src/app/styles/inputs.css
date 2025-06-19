@@ -50,16 +50,24 @@ form.entry-form {
     display: block;
     margin-bottom: 0.5rem;
 }
+form .format-description {
+    display: block;
+    margin-top: 0.5rem;
+    font-style: italic;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    color: var(--color-grayscale-600);
+}
 .form-input label em {
     font-style: italic;
     color: var(--color-warning);
 }
 input[type="text"], textarea {
+    appearance: none;
     display: block;
     width: 100%;
     line-height: 1.25;
     font-size: 1rem;
-    height: 2.25rem;
     padding: calc(0.5rem - 1.5px) calc(0.75rem - 1.5px);
     border: 1.5px solid var(--color-grayscale-600);
     border-radius: var(--radius-base-size);
@@ -71,11 +79,17 @@ input[type="text"]::placeholder, textarea::placeholder {
 }
 textarea {
     resize: none;
-    field-sizing: content;
-    max-height: 11rem;
+    /* 4 line default */
+    height: 6rem;
 }
-form.entry-form textarea {
-    min-height: 6rem;
+@supports (field-sizing: content) {
+    textarea {
+        /* 4 to 8 lines default */
+        field-sizing: content;
+        height: auto;
+        max-height: 11rem;
+        min-height: 6rem;
+    }   
 }
 
 /* SEARCH SPECIFIC */
@@ -87,7 +101,7 @@ search .search-button {
     right: 0;
     top: 0;
     line-height: 1;
-    height: calc(2.25rem - 3px);
+    height: calc(100% - 3px);
     font-size: 1.25rem;
     padding: calc(0.5rem - 1.5px);
     margin: 1.5px;

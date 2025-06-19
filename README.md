@@ -4,7 +4,7 @@ This app was created for a challenge on 10Fold (https://app.10foldhiring.com/).
 
 The goal was to create an EdTech platform for finding, viewing, and commenting on videos. This included requirements for displaying a list of videos, being able to create new videos, add and view comments, include video controls for volume and playback speed, and have fullscreen playback capability.
 
-This app starts with a demo login screen, and is then broken down into two pages: *Learn* and *Content Studio*.
+This app starts with a demo login screen, and is then broken down into two pages: *Learn* and *Content Studio*. To login, you can use any username with a form of lowercase letter strings separated by underscores. *Ex: (firstname_lastname)*
 
 On the *Learn* page, users can view videos from a searched username, and click on one to watch. Then they are taken to the video page with the fully custom video player and comments section.
 

@@ -11,7 +11,6 @@
     font-weight: inherit;
 }
 #content-studio > div, #content-video-form > div {
-    max-width: 40rem;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -19,6 +18,12 @@
     justify-content: space-between;
     gap: var(--padding-base-size);
     margin-bottom: calc(2*var(--padding-base-size));
+}
+#content-studio > div {
+    max-width: 60rem;
+}
+#content-video-form > div {
+    max-width: 40rem;
 }
 
 /* VIDEO LIST */
@@ -85,11 +90,41 @@
     margin-block: auto;
 }
 
-/* CONTENT FORMS */
+/* CONTENT FORM */
+
+#content-video-form textarea {
+    /* 6 lines */
+    height: 8.5rem;
+}
+@supports (field-sizing: content) {
+    #content-video-form textarea {
+        /* 4 to 8 lines */
+        height: auto;
+        max-height: 11rem;
+        min-height: 6rem;
+    }   
+}
+
+/* CONTENT FORM SUCCESS */
 #content-form-success h2 {
     margin-bottom: 1rem;
 }
 #content-form-success div {
     display: flex;
     gap: 1rem;
+}
+#content-video-form .existing-url {
+    font-weight: 700;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    overflow: clip;
+    word-wrap: break-word;
+    max-height: 3.75em;
+    width: 100%;
+}
+#content-video-form .existing-url i {
+    font-style: italic;
+    font-weight: inherit;
 }

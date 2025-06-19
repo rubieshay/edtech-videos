@@ -9,8 +9,8 @@ export default function VideosSearch({ setSearchedUserID }: {setSearchedUserID: 
         if (searchboxValue === "") {
             return;
         }
-        // set the actual searched value to the current value and clear the searchbox
-        setSearchedUserID(searchboxValue);
+        // set the actual searched value to the current value (lowercased) and clear the searchbox
+        setSearchedUserID(searchboxValue.toLowerCase());
         setSearchboxValue("");
     }
 

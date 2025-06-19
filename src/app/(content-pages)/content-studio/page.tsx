@@ -8,7 +8,7 @@ import { UserDataContext } from "../../utils/user-data-context";
 export default function ContentStudio() {
     // ContentStudio allows the user to see their content and edit it or upload something new
 
-    const {currentUserID} = useContext(UserDataContext);
+    const { currentUserID } = useContext(UserDataContext);
 
     return (
         <main id="content-studio">

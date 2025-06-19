@@ -1,28 +1,30 @@
-import Link from "next/link";
+"use client";
 
-export default function VideosLayout({ children }: Readonly<{children: React.ReactNode;}>) {
+import { useContext } from "react";
+import { UserDataContext } from "../../utils/user-data-context";
+import LoggedOutPage from "../../logged-out-page";
+import HeaderNav from "../../header-nav";
+import { NavPage } from "../../utils/constants";
+
+export default function LearnLayout({ children }: Readonly<{children: React.ReactNode;}>) {
     // This layout is used for most of the app, and contains the navigation header
     // This version highlights Learn in the navbar
-    
-    return (
-        <>
-            <header>
-                <nav>
-                    <Link href="/videos" className="home-link">
-                        <h1>EdVid</h1>
-                    </Link>
-                    <Link href="/videos" className="nav-link nav-link-active">
-                        <span>Learn</span>
-                    </Link>
-                    <Link href="/content-studio" className="nav-link">
-                        <span>Content Studio</span>
-                    </Link>
-                    <Link href="/" className="logout-button">
-                        <span>Logout</span>
-                    </Link>
-                </nav>
-            </header>
-            {children}
-        </>
-    );
+
+    // If the userID is ever null, it also gives you message to login
+    const { currentUserID } = useContext(UserDataContext);
+
+    if (currentUserID === null) {
+        return (
+            <LoggedOutPage/>
+        );
+    } else {
+        return (
+            <>
+                <header>
+                    <HeaderNav activeLink={NavPage.learn}/>
+                </header>
+                {children}
+            </>
+        );
+    }
 }

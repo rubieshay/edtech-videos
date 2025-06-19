@@ -1,12 +1,31 @@
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import testData from "../../utils/test-data.json";
+import { fetchUserVideos } from "../../utils/api-calls";
+import { VideoData } from "../../utils/types";
+import { getVideoData } from "../../utils/functions";
 
 export default function VideoResults({ searchedUserID }: {searchedUserID: string}) {
     // VideoResults contains the resulting list of videos based on the searched user
+    const [userVideos, setUserVideos] = useState<VideoData[]>([]);
 
-    // Filter the list to not include "deleted" videos
-    // Since there isn't a delete api call, we can edit the video to a blank video and filter based on this
-    const userVideos = testData.videos.filter((video) => video.user_id === searchedUserID && video.video_url !== "" && video.title !== "");
+    // fetch videos from the api
+    const getUserVideos = useCallback(async () => {
+        if (searchedUserID === "") {
+            return;
+        }
+        const videosResponse = await fetchUserVideos(searchedUserID);
+        if (!videosResponse.success) {
+            setUserVideos([]);
+            return;
+        } 
+        // get the needed data from the response
+        const newUserVideos = getVideoData(videosResponse.responseValue.videos, searchedUserID);
+        setUserVideos(newUserVideos);
+    }, [searchedUserID]);
+
+    useEffect(() => {
+        getUserVideos();
+    }, [getUserVideos]);
 
     if (userVideos && userVideos.length > 0) {
         return (

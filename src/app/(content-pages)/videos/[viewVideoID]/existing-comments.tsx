@@ -1,11 +1,12 @@
 "use client";
 
-import testData from "../../../utils/test-data.json";
+// import { useState, useCallback, useEffect } from "react";
+// import { fetchComments } from "../../../utils/api-calls";
+// import { getCommentsData } from "../../../utils/functions";
+import { CommentData } from "../../../utils/types";
 
-export default function ExistingComments({ videoID } : {videoID: string}) {
+export default function ExistingComments({ commentsData } : {commentsData: CommentData[]}) {
     // Existing comments contains comments for the videoID that have already been written
-
-    const commentsData = testData.comments.filter((comment) => comment.video_id === videoID);
 
     if (commentsData.length > 0) {
         return (

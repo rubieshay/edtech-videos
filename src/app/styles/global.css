@@ -68,12 +68,12 @@
 }
 
 @font-face {
-    font-family: DM Sans;
+    font-family: "DM Sans";
     src: url("../fonts/dm-sans.ttf");
     font-style: normal;
 }
 @font-face {
-    font-family: "DM Sans Italic";
+    font-family: "DM Sans";
     src: url("../fonts/dm-sans-italic.ttf");
     font-style: italic;
 }

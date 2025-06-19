@@ -33,11 +33,7 @@
     content: "play_arrow";
     color: var(--color-grayscale-100);
     text-shadow: 0 0 5px 5px #000000ff;
-    font-family: "Material Symbols Outlined", "DM Sans", sans-serif;
-    font-variation-settings: "FILL" 1,
-                             "wght" 300,
-                             "GRAD" 0,
-                             "opsz" 24;
+    font-family: "Material Symbols Filled", "DM Sans", sans-serif;
     display: block;
     font-size: 6rem;
     aspect-ratio: 1;
@@ -70,7 +66,8 @@
     border-radius: 0 0 var(--radius-base-size) var(--radius-base-size);
     z-index: 10;
 }
-.video-player:hover .video-controls-visible, .video-player:has(* *:hover) .video-controls, .video-player:focus-within {
+.video-player:hover .video-controls-visible, .video-player:has(* *:hover) .video-controls,
+.video-player:focus-within .video-controls, .video-player:has(* *:focus-visible) {
     opacity: 1;
     transition: opacity 200ms 0ms ease-in-out;
 }
@@ -138,10 +135,6 @@
     font-size: 1.25rem;
     line-height: 1;
     height: auto;
-    font-variation-settings: "FILL" 1,
-                             "wght" 300,
-                             "GRAD" 0,
-                             "opsz" 24;
 }
 .video-controls button.material-symbols-filled {
     width: 2.5rem;

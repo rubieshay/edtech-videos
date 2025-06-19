@@ -1,25 +1,43 @@
 "use client";
 
 import Link from "next/link";
-import { useContext } from "react";
-import testData from "../../utils/test-data.json";
-import { UserDataContext } from "@/app/utils/user-data-context";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { UserDataContext } from "../../utils/user-data-context";
+import { fetchUserVideos } from "../../utils/api-calls";
+import { VideoData } from "../../utils/types";
+import { getVideoData } from "../../utils/functions";
 
 export default function StudioVideos() {
     // StudioVideos shows your existing videos for you to edit
 
-    const {currentUserID} = useContext(UserDataContext);
+    const { currentUserID } = useContext(UserDataContext);
+    const [userVideos, setUserVideos] = useState<VideoData[]>([]);
 
-    // Filter the list to not include "deleted" videos
-    // Since there isn't a delete api call, we can edit the video to a blank video and filter based on this
-    const userVideos = testData.videos.filter((video) => video.user_id === currentUserID && video.video_url !== "" && video.title !== "");
+    // fetch videos from the api
+    const getUserVideos = useCallback(async () => {
+        if (currentUserID === null || currentUserID === "") {
+            return;
+        }
+        const videosResponse = await fetchUserVideos(currentUserID);
+        if (!videosResponse.success) {
+            setUserVideos([]);
+            return;
+        }
+        // get the needed data from the response
+        const newUserVideos = getVideoData(videosResponse.responseValue.videos, currentUserID);
+        setUserVideos(newUserVideos);
+    }, [currentUserID]);
+
+    useEffect(() => {
+        getUserVideos();
+    }, [getUserVideos]);
 
     if (userVideos && userVideos.length > 0) {
         return (
             <section className="edit-video-list">
                 <ul>
-                    {userVideos.map((videoData) => (
-                        <li key={videoData.video_id}>
+                    {userVideos.map((videoData, index) => (
+                        <li key={index}>
                             <Link href={`/content-studio/${encodeURIComponent(videoData.video_id)}`}>
                                 <video className="video-thumbnail">
                                     <source src={videoData.video_url + "#t=0.5"}></source>
