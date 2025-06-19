@@ -107,6 +107,7 @@ search .search-button {
     padding: calc(0.5rem - 1.5px);
     margin: 1.5px;
     border-radius: 0 calc(var(--radius-base-size) - 1.5px) calc(var(--radius-base-size) - 1.5px) 0;
+    outline-offset: 2.5px;
 }
 input:has(~ button:focus-visible) {
     outline-offset: 1px;

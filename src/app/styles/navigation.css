@@ -15,6 +15,7 @@ nav {
     gap: var(--padding-base-size) calc(0.5*var(--padding-base-size));
 }
 nav a {
+    border-radius: var(--radius-base-size);
     position: relative;
     padding-block: calc(0.5*var(--padding-base-size));
 }
