@@ -21,7 +21,7 @@ export default function VideoPlayer({ videoURL } : {videoURL: string}) {
     // state used for video progress
     const [timeCompleted, setTimeCompleted] = useState<number>(0);
     const [videoDuration, setVideoDuration] = useState<number>(0);
-    // const [currentTimepoint, setCurrentTimepoint] = useState<number>(0);
+    const [bufferProgress, setBufferProgress] = useState<number>(0);
     // state used for sliders (volume value from 0 to 1, playback value from 0.25 to 3)
     // default to full volume and 1x speed
     const [volumeValue, setVolumeValue] = useState<number>(1);
@@ -55,6 +55,16 @@ export default function VideoPlayer({ videoURL } : {videoURL: string}) {
         } else {
             setTimeCompleted(videoElement.current.currentTime);  
             setVideoDuration(videoElement.current.duration);
+        }
+    }
+    function handleProgressUpdate() {
+        console.log("update");
+        if (videoElement.current === null || !videoDuration || videoElement.current.buffered.length < 0) {
+            return;
+        } else {
+            // get the percentage total
+            console.log(videoElement.current.buffered.end(0))
+            setBufferProgress(getRatio(videoElement.current.buffered.end(0), 0, videoDuration));
         }
     }
 
@@ -160,8 +170,8 @@ export default function VideoPlayer({ videoURL } : {videoURL: string}) {
             ref={videoContainer} onMouseMove={resetControlTimer}>
                 <video preload="metadata" ref={videoElement}
                 className={isFullscreen ? "video-fullscreen" : ""}
-                aria-labelledby="video-label"
-                onTimeUpdate={handleTimeUpdate} onClick={handlePlayPause} onLoadedMetadata={handleUpdateDuration}>
+                aria-labelledby="video-label" onLoadedMetadata={handleUpdateDuration}
+                onProgress={handleProgressUpdate} onTimeUpdate={handleTimeUpdate} onClick={handlePlayPause}>
                     <source src={videoURL}></source>
                     <source src={"/video-not-found.mp4"}></source>
                     An error occurred with the video player.
@@ -231,6 +241,8 @@ export default function VideoPlayer({ videoURL } : {videoURL: string}) {
                                 onBlur={handleStopChangingTime} onPointerUp={handleStopChangingTime}/>
                                 <div className="range-track" aria-hidden="true"
                                 style={{"--range-percent": getRatio(Math.round(timeCompleted*100)/100, 0, videoDuration)} as React.CSSProperties}></div>
+                                <div className="range-track video-buffer-progress" aria-hidden="true"
+                                style={{"--range-percent": bufferProgress} as React.CSSProperties}></div>
                             </div>
                         </div>
                     </div>

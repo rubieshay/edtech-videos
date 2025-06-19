@@ -5,14 +5,13 @@
 }
 .video-player video {
     width: 100%;
-    height: auto;
     aspect-ratio: 16 / 9;
     object-fit: contain;
     background: #000000;
     display: block;
     border-radius: var(--radius-base-size);
 }
-.video-fullscreen {
+.video-player video.video-fullscreen {
     width: 100%;
     height: 100%;
     border-radius: none;
@@ -159,7 +158,7 @@
 .video-slider-control .range-input {
     --slider-thumb-color: var(--color-grayscale-100);
     --slider-base-color: var(--color-grayscale-500);
-    --slider-fill-color: var(--color-grayscale-300);
+    --slider-fill-color: var(--color-primary-500);
 }
 .video-slider-control .range-number {
     color: var(--color-grayscale-100);
@@ -236,7 +235,7 @@
 }
 .video-progress .range-input {
     --slider-thumb-color: var(--color-grayscale-100);
-    --slider-base-color: var(--color-grayscale-500);
+    --slider-base-color: var(--color-grayscale-700);
     --slider-fill-color: var(--color-primary-500);
     height: 0.5rem;
     border-radius: 0.5rem;
@@ -249,54 +248,42 @@
 }
 /* slider track */
 .video-progress .range-input .range-track {
-    flex: 0 0;
     width: 100%;
     height: 0.5rem;
     border-radius: 0.25rem;
-    position: absolute;
     top: 0;
-    background: var(--slider-base-color);
-    z-index: 1;
+    background-color: transparent;
+}
+.video-progress .range-input .range-track.video-buffer-progress {
+    background-color: var(--slider-base-color);
+    z-index: 2;
+}
+.video-progress .range-input .range-track.video-buffer-progress::after {
+    background-color: var(--color-grayscale-500);
+    border-radius: 0.25rem;
+    /* ensure this fills at 100% */
+    width: calc(100% * var(--range-percent));
 }
 .video-progress .range-input .range-track::after {
-    content: "";
-    display: block;
-    position: absolute;
     /* minus one width of thumb * range-percent + half width of thumb */
     width: calc(((100% - 0.5rem) * var(--range-percent)) + 0.25rem);
     height: 0.5rem;
-    top: 0;
-    left: 0;
     border-radius: 0.25rem 0 0 0.25rem;
-    background: var(--slider-fill-color);
-    z-index: 2;
 }
 .video-progress input[type=range]::-webkit-slider-runnable-track {
-    cursor: pointer;
-    background: transparent;
     width: 100%;
     height: 0.5rem;
     border-radius: 0.25rem;
 }
 .video-progress input[type=range]::-moz-range-track {
-    cursor: pointer;
-    background: transparent;
     width: 100%;
     height: 0.5rem;
     border-radius: 0.25rem;
 }
 .video-progress input[type=range]::-ms-track {
-    cursor: pointer;
-    background: transparent;
     width: 100%;
     height: 0.5rem;
     border-radius: 0.25rem;
-}
-.video-progress input[type=range]::-ms-fill-lower {
-    background: transparent;
-}
-.video-progress input[type=range]::-ms-fill-upper {
-    background: transparent;
 }
 /* slider thumb */
 .video-progress input[type=range]::-webkit-slider-thumb {
@@ -306,7 +293,6 @@
     border-radius: 0.25rem;
     margin-block: 0;
     background-color: var(--slider-fill-color);
-    cursor: pointer;
     transition: scale 200ms ease-in-out, background-color 200ms ease-in-out;
 }
 .video-progress input[type=range]::-moz-range-thumb {
@@ -315,7 +301,6 @@
     border-radius: 0.25rem;
     margin-block: 0;
     background-color: var(--slider-fill-color);
-    cursor: pointer;
     transition: scale 200ms ease-in-out, background-color 200ms ease-in-out;
 }
 .video-progress input[type=range]::-ms-thumb {
@@ -324,7 +309,6 @@
     border-radius: 0.25rem;
     margin-block: 0;
     background-color: var(--slider-fill-color);
-    cursor: pointer;
     transition: scale 200ms ease-in-out, background-color 200ms ease-in-out;
 }
 /* slider thumb */

@@ -16,6 +16,9 @@ export function getTimeColonString(timeInSeconds: number): string {
 }
 
 export function getRatio(value: number, minimum: number, maximum: number) {
+    if (maximum - minimum === 0) {
+        return 0;
+    }
     return (value - minimum) / (maximum - minimum)
 }
 
