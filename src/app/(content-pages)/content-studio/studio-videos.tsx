@@ -12,6 +12,7 @@ export default function StudioVideos() {
 
     const { currentUserID } = useContext(UserDataContext);
     const [userVideos, setUserVideos] = useState<VideoData[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     // fetch videos from the api
     const getUserVideos = useCallback(async () => {
@@ -26,20 +27,26 @@ export default function StudioVideos() {
         // get the needed data from the response
         const newUserVideos = getVideoData(videosResponse.responseValue.videos, currentUserID);
         setUserVideos(newUserVideos);
+        setIsLoading(false);
     }, [currentUserID]);
 
     useEffect(() => {
+        setIsLoading(true);
         getUserVideos();
     }, [getUserVideos]);
 
-    if (userVideos && userVideos.length > 0) {
+    if (isLoading) {
+        return (
+            <div className="loading-indicator material-symbols material-symbols-outlined" title="loading">progress_activity</div>
+        );
+    } else if (userVideos && userVideos.length > 0) {
         return (
             <section className="edit-video-list">
                 <ul>
                     {userVideos.map((videoData, index) => (
                         <li key={index}>
                             <Link href={`/content-studio/${encodeURIComponent(videoData.video_id)}`}>
-                                <video className="video-thumbnail">
+                                <video className="video-thumbnail" preload="metadata">
                                     <source src={videoData.video_url + "#t=0.5"}></source>
                                     <source src={"/video-not-found.mp4#t=0.5"}></source>
                                     An error occurred with the video player.

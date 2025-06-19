@@ -6,11 +6,13 @@ The goal was to create an EdTech platform for finding, viewing, and commenting o
 
 This app starts with a demo login screen, and is then broken down into two pages: *Learn* and *Content Studio*. To login, you can use any username with a form of lowercase letter strings separated by underscores. *Ex: (firstname_lastname)*
 
-On the *Learn* page, users can view videos from a searched username, and click on one to watch. Then they are taken to the video page with the fully custom video player and comments section.
+On the *Learn* page, users can view videos from a searched username, and click on one to watch. Then they are taken to the video page with a fully customized video player and the comments section.
 
 In the *Content Studio*, users can see videos they've uploaded and edit/delete existing videos or upload new videos.
 
 While using the demo, you can search for user "rubie_shay" to view the provided sample videos, or login as "rubie_shay" to view them in *Content Studio*.
+
+The app is responsive to many different screen sizes, and has accessible functionality such as keyboard-input.
 
 
 ## Running the App

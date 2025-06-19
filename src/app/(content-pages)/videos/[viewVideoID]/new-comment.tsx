@@ -4,7 +4,7 @@ import { FormEvent, useContext, useState } from "react";
 import { UserDataContext } from "../../../utils/user-data-context";
 import { postComment } from "../../../utils/api-calls";
 
-export default function NewComment({ setIsWritingComment, refetchComments, videoID }: {setIsWritingComment: React.Dispatch<React.SetStateAction<boolean>>, refetchComments: () => void, videoID: string}) {
+export default function NewComment({ setIsWritingComment, handleRefetchComments, videoID }: {setIsWritingComment: React.Dispatch<React.SetStateAction<boolean>>, handleRefetchComments: () => void, videoID: string}) {
     // NewComment is how you can add a new comment to a video
 
     const { currentUserID } = useContext(UserDataContext);
@@ -14,7 +14,6 @@ export default function NewComment({ setIsWritingComment, refetchComments, video
         event.preventDefault();
         setCommentText("");
         setIsWritingComment(false);
-        refetchComments();
     }
     function handlePostComment(event: FormEvent) {
         event.preventDefault();
@@ -26,7 +25,7 @@ export default function NewComment({ setIsWritingComment, refetchComments, video
         // post comment data with api and refetch the comments so it appears
         const newCommentData = {video_id : videoID, user_id : currentUserID, content: commentText}
         postComment(newCommentData);
-        refetchComments();
+        handleRefetchComments();
     }
 
     return (

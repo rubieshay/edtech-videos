@@ -10,25 +10,44 @@ nav {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: flex-end;
-    gap: var(--padding-base-size);
+    gap: var(--padding-base-size) calc(0.5*var(--padding-base-size));
 }
 nav a {
     position: relative;
     padding-block: calc(0.5*var(--padding-base-size));
 }
-nav a > * {
-    line-height: 1.5rem;
-}
 nav a, nav a > * {
     display: block;
+    line-height: 1;
+}
+.nav-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    padding-inline: calc(0.75*var(--padding-base-size));
+}
+.nav-link span:last-child {
+    line-height: 1.5rem;
+    height: 1.5rem;
+}
+.nav-link .material-symbols {
+    display: block;
+    font-size: 1.25rem;
+    line-height: 1;
+    width: 1.25rem;
+    height: 1.5rem;
+    padding-block: 0.125rem;
 }
 .nav-link-active::after {
     content: "";
     position: absolute;
-    width: 100%;
+    width: calc(100% - 0.5*var(--padding-base-size));
     height: 0.25rem;
-    left: 0;
+    left: calc(0.25*var(--padding-base-size));
     bottom: 0;
     background: var(--color-primary-700);
     border-radius: 0.125rem;
@@ -40,4 +59,18 @@ nav a, nav a > * {
     padding-inline: calc(0.75*var(--padding-base-size));
     background: var(--color-primary-200);
     border-radius: var(--radius-base-size);
+    margin-left: calc(0.5*var(--padding-base-size));
+}
+@media (max-width: 520px) {
+    .nav-link span:last-child, .logout-button span:last-child {
+        display: none;
+    }
+    .nav-link.nav-link-active span:last-child {
+        display: block;
+    }
+}
+@media (max-width: 380px) {
+    .nav-link.nav-link-active span:last-child {
+        display: none;
+    }
 }

@@ -1,0 +1,21 @@
+/* OVERALL INDICATOR */
+@keyframes spin {
+    0% {
+        rotate: 0turn;
+    }
+    100% {
+        rotate: 1turn;
+    }
+}
+.loading-indicator {
+    font-size: 1.5rem;
+    aspect-ratio: 1;
+    animation: spin 3s linear forwards infinite;
+    color: var(--color-grayscale-500);
+}
+
+/* SPECIFIC INDICATOR FORMATTING */
+
+.comments .loading-indicator {
+    margin-bottom: var(--padding-base-size);
+}

@@ -17,7 +17,10 @@ export default function ContentStudio() {
                     <h2>Content Studio</h2>
                     <h3>Signed in as <i>{currentUserID}</i></h3>
                 </div>
-                <Link href="/content-studio/upload-video" className="button-link">Upload New Video</Link>
+                <Link href="/content-studio/upload-video" className="button-link icon-text-button">
+                    <span className="material-symbols material-symbols-outlined" aria-hidden="true">upload</span>
+                    <span>Upload New Video</span>
+                </Link>
             </div>
             <StudioVideos/>
         </main>

@@ -14,12 +14,13 @@ export default function Comments({ videoID } : {videoID: string}) {
     const [isWritingComment, setIsWritingComment] = useState<boolean>(false);
     // let the Comments component control the exisitng data so it is updated when you write a comment
     const [commentsData, setCommentsData] = useState<CommentData[]>([]);
-    // timer for waiting after refetch
+    // timer and loading state for waiting after refetch
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const refetchTimer = useRef<number | null>(null);
+    
     
     // fetch comments from the api
     const getComments = useCallback(async () => {
-        console.log("getting comments");
         const commentResponse = await fetchComments(videoID);
         if (!commentResponse.success) {
             setCommentsData([]);
@@ -28,14 +29,15 @@ export default function Comments({ videoID } : {videoID: string}) {
         // get the needed data from the response
         const newCommentsData = getCommentsData(commentResponse.responseValue.comments);
         setCommentsData(newCommentsData);
+        setIsLoading(false);
     }, [videoID]);
 
     useEffect(() => {
         getComments();
     }, [getComments]);
 
-    function refetchComments() {
-        console.log("refetch");
+    function handleRefetchComments() {
+        setIsLoading(true);
         // wait 2 seconds before fetching the data so it has hopefully been set
         if (refetchTimer.current) {
             clearTimeout(refetchTimer.current);
@@ -59,7 +61,12 @@ export default function Comments({ videoID } : {videoID: string}) {
                 }
             </div>
             {isWritingComment ?
-                <NewComment setIsWritingComment={setIsWritingComment} refetchComments={refetchComments} videoID={videoID}/>
+                <NewComment setIsWritingComment={setIsWritingComment} handleRefetchComments={handleRefetchComments} videoID={videoID}/>
+                :
+                <></>
+            }
+            {isLoading ?
+                <div className="loading-indicator material-symbols material-symbols-outlined" title="loading">progress_activity</div>
                 :
                 <></>
             }

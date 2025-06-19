@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./styles/global.css";
 import "./styles/login.css";
+import "./styles/loading.css";
 import "./styles/inputs.css";
 import "./styles/navigation.css";
 import "./styles/content-studio.css";

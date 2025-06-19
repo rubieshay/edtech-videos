@@ -1,8 +1,5 @@
 "use client";
 
-// import { useState, useCallback, useEffect } from "react";
-// import { fetchComments } from "../../../utils/api-calls";
-// import { getCommentsData } from "../../../utils/functions";
 import { CommentData } from "../../../utils/types";
 
 export default function ExistingComments({ commentsData } : {commentsData: CommentData[]}) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { getTimeColonString, getRatio } from "../../../utils/functions";
 
 export default function VideoPlayer({ videoURL } : {videoURL: string}) {
@@ -11,14 +11,17 @@ export default function VideoPlayer({ videoURL } : {videoURL: string}) {
     const videoElement = useRef<HTMLVideoElement | null>(null);
     // timer and state for hiding video controls
     const controlTimeout = useRef<number | null>(null);
-    const [controlsHidden, setControlsHidden] = useState<boolean>(true);
+    const [controlsHidden, setControlsHidden] = useState<boolean>(false);
 
-    // state used for icon swappping (pause/play, mute/unmute)
+    // state used for icon swappping (pause/play, mute/unmute) or visibility of controls (isPlaying)
     const [isMuted, setIsMuted] = useState<boolean>(false);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
+    // state used to determine if video should play after changing progress point
+    const [wasPaused, setWasPaused] = useState<boolean>(true);
     // state used for video progress
     const [timeCompleted, setTimeCompleted] = useState<number>(0);
     const [videoDuration, setVideoDuration] = useState<number>(0);
+    // const [currentTimepoint, setCurrentTimepoint] = useState<number>(0);
     // state used for sliders (volume value from 0 to 1, playback value from 0.25 to 3)
     // default to full volume and 1x speed
     const [volumeValue, setVolumeValue] = useState<number>(1);
@@ -26,12 +29,13 @@ export default function VideoPlayer({ videoURL } : {videoURL: string}) {
     // state for fullscreen
     const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
 
-    // set the duration once we have the element ref
-    useEffect(() => {
-        if (videoElement.current !== null) {
-            setVideoDuration(videoElement.current.duration);
+    // set the duration once we loaded metadata
+    function handleUpdateDuration() {
+        if (videoElement.current === null) {
+            return;
         }
-    }, [videoElement]);
+        setVideoDuration(videoElement.current.duration);
+    }
 
     // timeout video controls if mouse doesn't move
     function resetControlTimer() {
@@ -54,25 +58,54 @@ export default function VideoPlayer({ videoURL } : {videoURL: string}) {
         }
     }
 
+    function handleChangeTimepoint(newTimepoint: number) {
+        if (videoElement.current === null) {
+            return;
+        }
+        videoElement.current.currentTime = newTimepoint;
+        // setCurrentTimepoint(getRatio(timeCompleted, 0, videoDuration));
+    }
+    function handleStopChangingTime() {
+        if (!wasPaused) {
+            playVideo();
+        }
+    }
+
+    function playVideo() {
+        if (videoElement.current === null) {
+            return;
+        }
+        // set states
+        setIsPlaying(true);
+        setWasPaused(false);
+        // play the video
+        if (videoElement.current.ended) {
+            videoElement.current.currentTime = 0;
+        }
+        videoElement.current.play();
+        // change previously paused state
+    }
+    function pauseVideo() {
+        if (videoElement.current === null) {
+            return;
+        }
+        // set states
+        setIsPlaying(false);
+        // pause the video
+        videoElement.current.pause();
+    }
     function handlePlayPause() {
         if (videoElement.current === null) {
             return;
         }
         if (videoElement.current.paused || videoElement.current.ended) {
-            // make the icon change accordingly
-            setIsPlaying(true);
-            // play the video
-            if (videoElement.current.ended) {
-                videoElement.current.currentTime = 0;
-            }
-            videoElement.current.play();
+            // setWasPaused(false);
+            playVideo();
         } else {
-            // make the icon change accordingly
-            setIsPlaying(false);
-            // pause the video
-            videoElement.current.pause();
+            // only make true if it was paused manually
+            setWasPaused(true);
+            pauseVideo();
         }
-
     }
 
     function handleMute() {
@@ -123,11 +156,12 @@ export default function VideoPlayer({ videoURL } : {videoURL: string}) {
 
     if (videoURL) {
         return (
-            <div className={"video-player" + (isPlaying ? "" : " video-paused")}
+            <div className={"video-player" + (isPlaying || controlsHidden ? "" : " video-paused")}
             ref={videoContainer} onMouseMove={resetControlTimer}>
-                <video className={isFullscreen ? "video-fullscreen" : ""}
-                aria-labelledby="video-label" ref={videoElement}
-                onTimeUpdate={handleTimeUpdate} onClick={handlePlayPause}>
+                <video preload="metadata" ref={videoElement}
+                className={isFullscreen ? "video-fullscreen" : ""}
+                aria-labelledby="video-label"
+                onTimeUpdate={handleTimeUpdate} onClick={handlePlayPause} onLoadedMetadata={handleUpdateDuration}>
                     <source src={videoURL}></source>
                     <source src={"/video-not-found.mp4"}></source>
                     An error occurred with the video player.
@@ -141,7 +175,7 @@ export default function VideoPlayer({ videoURL } : {videoURL: string}) {
                                 {isPlaying ? "pause" : "play_arrow"}
                             </button>
                         </li>
-                        <li className="video-time-display">
+                        <li id="duration-display" className="video-time-display">
                             {getTimeColonString(timeCompleted) + " / " + getTimeColonString(videoDuration)}
                         </li>
                     </ul>
@@ -187,6 +221,19 @@ export default function VideoPlayer({ videoURL } : {videoURL: string}) {
                             </button>
                         </li>
                     </ul>
+                    <div className="video-progress">
+                        <div className="range-element">
+                            <div className="range-input">
+                                <input type="range" min="0" max={isNaN(videoDuration) ? 0 : videoDuration} step="0.01"
+                                value={timeCompleted} aria-label="scrub bar" aria-describedby="duration-display"
+                                onChange={(event) => handleChangeTimepoint(Number(event.target.value))}
+                                onFocus={pauseVideo} onPointerDown={pauseVideo}
+                                onBlur={handleStopChangingTime} onPointerUp={handleStopChangingTime}/>
+                                <div className="range-track" aria-hidden="true"
+                                style={{"--range-percent": getRatio(Math.round(timeCompleted*100)/100, 0, videoDuration)} as React.CSSProperties}></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );

@@ -7,6 +7,7 @@ import { getVideoData } from "../../utils/functions";
 export default function VideoResults({ searchedUserID }: {searchedUserID: string}) {
     // VideoResults contains the resulting list of videos based on the searched user
     const [userVideos, setUserVideos] = useState<VideoData[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     // fetch videos from the api
     const getUserVideos = useCallback(async () => {
@@ -21,12 +22,19 @@ export default function VideoResults({ searchedUserID }: {searchedUserID: string
         // get the needed data from the response
         const newUserVideos = getVideoData(videosResponse.responseValue.videos, searchedUserID);
         setUserVideos(newUserVideos);
+        setIsLoading(false);
     }, [searchedUserID]);
 
     useEffect(() => {
+        setIsLoading(true);
         getUserVideos();
     }, [getUserVideos]);
 
+    if (isLoading) {
+        return (
+            <div className="loading-indicator material-symbols material-symbols-outlined" title="loading">progress_activity</div>
+        );
+    }
     if (userVideos && userVideos.length > 0) {
         return (
             <section className="video-results">
@@ -35,7 +43,7 @@ export default function VideoResults({ searchedUserID }: {searchedUserID: string
                     {userVideos.map((videoData) => (
                         <li key={videoData.video_id}>
                             <Link href={`/videos/${encodeURIComponent(videoData.video_id)}`}>
-                                <video className="video-thumbnail">
+                                <video className="video-thumbnail" preload="metadata">
                                     <source src={videoData.video_url + "#t=0.5"}></source>
                                     <source src={"/video-not-found.mp4#t=0.5"}></source>
                                     An error occurred with the video player.
