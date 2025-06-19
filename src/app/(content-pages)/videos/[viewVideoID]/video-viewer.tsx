@@ -34,7 +34,11 @@ export default function VideoViewer({ videoID } : {videoID: string}) {
                 <VideoPlayer videoURL={videoData.video_url}/>
                 <div className="description">
                     <h4 title={"Created by " + videoData.user_id}>Created by <i>{videoData.user_id}</i></h4>
-                    <p>{videoData.description}</p>
+                    {videoData.description === "" ?
+                        <></>
+                        :
+                        <p>{videoData.description}</p>
+                    }
                 </div>
             </section>
         );

@@ -32,7 +32,6 @@ section.video-viewer h2 {
 }
 section.video-viewer .description h4 {
     display: block;
-    margin-bottom: 0.5rem;
     text-overflow: ellipsis;
     overflow: hidden;
     text-wrap: nowrap;
@@ -43,4 +42,5 @@ section.video-viewer .description h4 i {
 }
 section.video-viewer .description p {
     font-size: 0.875rem;
+    margin-top: 0.5rem;
 }
