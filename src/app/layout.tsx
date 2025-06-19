@@ -13,7 +13,7 @@ import "./styles/comments.css";
 import { UserDataProvider} from "./utils/user-data-context";
 
 export const metadata: Metadata = {
-    title: "EdVideos"
+    title: "EdVid"
 }
 
 export default function RootLayout({ children }: Readonly<{children: React.ReactNode;}>) {

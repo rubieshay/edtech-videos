@@ -1,6 +1,7 @@
 /* SEARCH */
 #video-results-page search {
     margin-bottom: calc(2*var(--padding-base-size));
+    max-width: 60rem;
 }
 .empty-video-results {
     font-weight: 700;
