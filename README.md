@@ -28,9 +28,9 @@ To run the app, open the directory and run the following commands:
 Then open http://localhost:3000 in your browser to see the result.
 
 
-### Images
+## Images
 
-#### Desktop
+### Desktop
 
 ![Login Page (Desktop)](screenshots/desktop-login.png?raw=true "Login Page (Desktop)")
 ![Video Search (Desktop)](screenshots/desktop-video-search.png?raw=true "Video Search (Desktop)")
@@ -44,7 +44,7 @@ Then open http://localhost:3000 in your browser to see the result.
 ![Edit Video Page (Desktop)](screenshots/desktop-edit-form.png?raw=true "Edit Video Page (Desktop)")
 ![Edit Success Page (Desktop)](screenshots/desktop-edit-success.png?raw=true "Edit Success Page (Desktop)")
 
-#### Mobile
+### Mobile
 
 ![Login Page (Mobile)](screenshots/mobile-login.png?raw=true "Login Page (Mobile)")
 ![Video Search (Mobile)](screenshots/mobile-video-search.png?raw=true "Video Search (Mobile)")
@@ -58,7 +58,7 @@ Then open http://localhost:3000 in your browser to see the result.
 ![Edit Video Page (Mobile)](screenshots/mobile-edit-form.png?raw=true "Edit Video Page (Mobile)")
 ![Edit Success Page (Mobile)](screenshots/mobile-edit-success.png?raw=true "Edit Success Page (Mobile)")
 
-#### Custom Video Element
+### Custom Video Element
 
 ![Video Controls](screenshots/video-controls.png?raw=true "Video Controls")
 ![Video Volume Control](screenshots/video-volume.png?raw=true "Video Volume Control")
